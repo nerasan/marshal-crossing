@@ -138,3 +138,13 @@ var changeText = function(words) {
         changeText(s.text)
         changeButtons(s.buttons)
       };
+
+
+           // percent chance of something happening
+           var d = Math.random();
+           if (d < 0.5)
+               // 50% chance of being here
+           else if (d < 0.7)
+               // 20% chance of being here
+           else
+               // 30% chance of being here
