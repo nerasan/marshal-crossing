@@ -30,7 +30,7 @@ Other non-goal features:
 friendship points
 friendship level
 day count
-object variable for all the scenarios
+objects for all scenarios types
 
 ## SCENARIOS 0-15
 
@@ -54,33 +54,6 @@ object variable for all the scenarios
 end scenario - BFF! - you know marshal has taken a liking to you already. he decided to come by with a present and a photo of himself so you guys can be best friends forever!
 
 end scenario - NO - marshal likes his life on the island. he is friends with the other villagers but he can't help think that you don't want him there, espcially since you are the island's resident rep. what does it say when the resident rep is not friendly to him? he thinks it over and eventually moves to another island. look what you have done, you meanie!
-
-#### Scenario 0
-
-Scenario: "You have a new villager moving into your island. His name is Marshal! Let's go say hi."
-Buttons: "Say hi!"
-
-#### Scenario 1
-
-Scenario:
-After introducting yourself to Marshal, he asks you what your favorite thing to do on the island is. You say...
-
-Buttons:
-1. Fishing +25
-2. Shopping at Able Sister's +25
-3. Singing in the plaza with K.K. Slider +25
-4. Figure out your hobby yourself! -10
-
-Happy:
-
-Sad:
-
-Options: Go to 'happy' response or go to 'sad' response
-
- two: {
-    image: "http://s9.postimg.org/9p8m7v1u7/6899639786_d517c4cce3_z.jpg", //house
-    text: "Your dog yanks at the leash. You hear dogs barking and see an old abandoned house. Strangely, the door is wide open. What do you want to do?",
-    buttons: [["Turn and run", "advanceTo(scenario.three)"],["Enter The House", "advanceTo(scenario.four)"]]
 
 ## FUNCTIONS
 
@@ -136,38 +109,104 @@ have input for the user to name their island
 var username = name
 var island = islandname
 
-two: {
-    image: "http://s9.postimg.org/9p8m7v1u7/6899639786_d517c4cce3_z.jpg", //house
-    text: "Your dog yanks at the leash. You hear dogs barking and see an old abandoned house. Strangely, the door is wide open. What do you want to do?",
-    buttons: [["Turn and run", "advanceTo(scenario.three)"],["Enter The House", "advanceTo(scenario.four)"]]
+### CODE FOR SCENARIO OBJECT
+```
+let scenario = {
+  // introductory scenario to say hi (zero)
+  zero: {
+    image: "#.jpg",
+    text: "Isabelle is making a morning accouncement! She says your island is welcoming its newest neighbor, Marshal! Please make every effort so that he feels right at home.",
+    button: [["Go say hi!", "nextScenario(scenario.one)"]]
   },
-
-    var advanceTo = function(s) {
-    changeImage(s.image)
-    changeText(s.text)
-    changeButtons(s.buttons)
-  };
-
-// CHANGING TO THE RESPONSE TEXT WHETHER HE IS HAPPY OR SAD -- INC OR DEC FRIENDSHIP
-  var responseHappy = function(s) {
-      friendship =+ 25
-      changeImage(s.image)
-      changeText(s.text)
-      changeButtons(s.buttons) // there should be a button to continue to next scenario
-  }
-
-  var responseSad = function(s) {
-      friendship =- 10
-      changeImage(s.image)
-      changeText(s.text)
-      changeButtons(s.buttons)
-  }
-
-
-
-scenario one
-button one -- responseHappy(happyresponse.two)
-button two -- responseSad(sadresponse.two)
-
-happyresponse.two and sadresponse.two will have one button that continues to next scenario
-
+  // scenario one
+  one: {
+    image: "#.jpg",
+    text: "After introducing yourself, Marshal asks you what is your favoite thing to do on the island?",
+    button: [["Fishing!", "happyResponse(happy.one)"],["Shopping at Able Sisters!", "happyResponse(happy.one)"],["Singing in the plaza with K.K. Slider!","happyResponse(happy.one)"], ["Figure out your hobby yourself!", "sadResponse(sad.one)"]]
+  },
+  // scenario two
+  two: {
+    image: "#",
+    text: "You are at Nook's Cranny and see they are selling a brand new espresso machine! Didn't Marshal tell you earlier that he has been needing one? You're not sure now... what do you do?",
+    button: [["Buy it for him!", "happyResponse(happy.two)"], ["Don't remember what he said..."], "sadResponse(sad.two)"]
+  },
+  // scenario three
+  three: {
+    image: "#",
+    text: "Isabelle once told you her favorite way to welcome a new neighbor is by giving the island's native fruit. Hm, has Marshal tried the local oranges?",
+    button: [["Give Marshal an orange basket", "happyResponse(happy.three)"],["He can go pick some himself", "sadResponse(sad.three)"]]
+  },
+  // scenario four
+  four: {
+    image: "#",
+    text: "Marshal heard that it is currently salmon season at the island! He has been trying to catch one but has had no luck. He asks if you can go catch him one.",
+    button: [["Let me get my fishing rod!", "happyResponse(happy.four)"],["Nah but you can have this sea bass lol", "sadResponse(sad.four)"]]
+  },
+  // scenario five
+  five: {
+    image: "#",
+    text: "Marshal found a house plant while unpacking but there is just no space in his house for it! Will you keep it and take care of it?",
+    button: [["There's a perfect spot at my place!", "happyResponse(happy.five)"],["Well I don't have space either", "sadResponse(sad.five)"]]
+  },
+  // scenario six
+  six: {
+    image: "#",
+    text: "It's Saturday which means K.K. Slider is here! Did anyone make sure Marshal knows to go to the plaza at 6 PM for the show?",
+    button: [["Invite him to go with you!", "happyResponse(happy.six)"],["He'll come on his own, right?", "sadResponse(sad.six)"]]
+  },
+  // scenario seven
+  seven: {
+    image: "#",
+    text: "It has been a week since Marshal moved to the island. For making him feel welcome, he wants to give you a present. You accept it and say...",
+    button: [["Anything for your new favorite friend!", "happyResponse(happy.seven)"],["As expected. It was mostly my effort after all.", "sadResponse(sad.seven)"]]
+  },
+  // scenario eight
+  eight: {
+    image: "#",
+    text: "Marshal wants to get to know you better! What kind of music do you listen to?",
+    button: [["Anything on the radio!", "happyResponse(happy.eight)"],["Classic hits", "happyResponse(happy.eight)"],["Whatever I can dance to!", "happyResponse(happy.eight)"],["Eh, you probably never heard of it","sadResponse(sad.eight)"]]
+  },
+  // scenario nine
+  nine: {
+    image: "#",
+    text: "It's Marshal's birthday! You are thinking of something special to do...",
+    button: [["Gather the other villagers and make a plan", "happyResponse(happy.nine)"],["Throw a party!", "happyResponse(happy.nine)"], ["Never mind, I have too much going on", "sadResponse(sad.nine)"]]
+  },
+  // scenario ten
+  ten: {
+    image: "#",
+    text: "Oh no! Marshal had too much cake for his birthday and now he feels sick! What do you do?",
+    button: [["Nothing! That's his fault!", "sadResponse(sad.ten)"],["Medicine delivery!", "happyResponse(happy.ten)"]]
+  },
+  // scenario eleven
+  eleven: {
+    image: "#",
+    text: "While shopping at Able Sisters, you notice an outfit displayed at the front. It definitely looks like something Marshal would wear...",
+    button: [["You're not sure so... don't buy it", "sadResponse(sad.eleven)"],["You're not sure but he might like it! Let's see!", "happyResponse(happy.eleven)"]]
+  },
+  // scenario twelve
+  twelve: {
+    image: "#",
+    text: "While tidying up, Marshal wants to know if you have any ideas to make his house look nicer. What suggestions do you have?",
+    button: [["Plant flowers outside", "happyResponse(happy.twelve)"],["Find a cool poster", "happyResponse(happy.twelve)"], ["New wallpaper?", "happyResponse(happy.twelve)"], ["No idea!", "sadResponse(sad.twelve)"]]
+  },
+  // scenario thirteen
+  thirteen: {
+    image: "#",
+    text: "Marshal tells you that he has been thinking about what life would be like on another island or another city. What do you tell him?",
+    button: [["You can move and find out?", "sadResponse(sad.thirteen)"],["If you go, we'll definitely miss you on the island!", "happyResponse(happy.thirteen)"]]
+  },
+  // scenario fourteen
+  fourteen: {
+    image: "#",
+    text: "You check your mailbox and find a letter from Marshal, explaining how he is glad he made the choice to move to the island since he got to meet people like you. He hopes you both can keep in touch in person and as penpals.",
+    button: [["Write back and tell him how much he means to you", "happyResponse(happy.fourteen)"],["Keep the letter but you forgot to write back...", "sadResponse(sad.fourteen)"]]
+  },
+  // scenario fifteen
+  fifteen: {
+    image: "#",
+    text: "It has been two weeks since Marshal moved to your island. You find him standing at the pier watching the sunset. Seems like a good time to tell him what's on your mind...",
+    button: [["I'm so happy you moved here. I hope we can stay friends forever!", "photoWin()"],["It's cool you moved here but...", "byeMarshal()"]]
+  },
+}
+```
