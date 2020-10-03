@@ -144,7 +144,7 @@ let happy = {
   // happy response 1 -- button goes to scenario 2
   one: {
     image: "./pics/happy.jpg",
-    text: "Oh! What an interesting hobby! I should try it sometime. I hope we can do that together!",
+    text: "Oh! What an interesting hobby! Marshal is glad to make his first friend on the island and hopes you both can partake in your hobby together.",
     button: [["Continue", "nextScenario(scenario.two)"]]
   },
   // happy response 2 -- button goes to scenario 3
