@@ -8,15 +8,13 @@ Marshal Crossing is a simple mini version of ACNH and introduces you to the vill
 
 Game Demo: [https://nerasan.github.io/marshal-crossing/](https://nerasan.github.io/marshal-crossing/)
 
-<a href="https://nerasan.github.io/marshal-crossing/" target="_blank">https://nerasan.github.io/marshal-crossing/</a>
-
 ## Technology
 
 HTML, CSS, JavaScript
 
 ## Wireframe & Design
 
-Only had a rough sketch, so a nice wireframe picture will be added soon!
+Nice wireframe picture will be added soon! (Only had a rough sketch...)
 
 **Color Palette**
 ```
