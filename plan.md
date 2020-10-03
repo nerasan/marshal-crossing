@@ -9,6 +9,7 @@ Marshal is the newest villager on your island. You will be presented a new scena
 The chances of earning the photo is much higher when your friendship level is at the max level, but it is possible Marshal trusts you even before that! How many days did it take for Marshal to consider you his best friend?
 
 Levels of friendship based on points & the chance of Marshal giving you his photo.
+(percentages have been modified from the actual ACNH game)
 1. 0-29 points -- 0% -- 0-25
 2. 30-59 points -- 5% -- 25-50
 3. 60-99 points -- 10% -- 50-75-100
@@ -19,18 +20,11 @@ Levels of friendship based on points & the chance of Marshal giving you his phot
 At level 6, you have a very high chance to earn their picture, but there is always the slight chance you earn his trust early!
 
 Other non-goal features:
-• Footer to show: friendship level, number of days since becoming his friend
-• Restart function
-• Picture of Marshal in the screen becomes happier every time friendship level increases
-• Smiling Marshal when the friendship points increase after picking an option
-• Sad Marshal when the friendship points decrease after picking an option
-
-## VARIABLES TO DECLARE
-
-friendship points
-friendship level
-day count
-objects for all scenarios types
+* Footer to show: friendship level, number of days since becoming his friend
+* Restart function
+* Picture of Marshal in the screen becomes happier every time friendship level increases
+* Smiling Marshal when the friendship points increase after picking an option
+* Sad Marshal when the friendship points decrease after picking an option
 
 ## SCENARIOS 0-15
 
@@ -57,7 +51,7 @@ end scenario - NO - marshal likes his life on the island. he is friends with the
 
 ## FUNCTIONS
 
-6 Math.random functions for the % chance for each friendship level 
+Math.random functions for the % chance for each friendship level 
 Number of functions that begins the next scenario
 - Scenario 0 > startFriendship() > Scenario 1 > happyOne OR sadOne > Scenario 2 > happyTwo OR sadTwo > Scenario 3 > etc...
 
@@ -69,23 +63,17 @@ decreaseFriendship to =-10
 
 After all scenarios are complete, he will definitely give you his photo. But your goal is to earn his trust early!
 
+This was not implemented but a thought. I felt like 
 If at last scenario, your friendship points are under 200, Marshal gets sad and moves away. You lose!
-
-## GAME LOGIC
-
-Objects for each scenario and response.
-Arrays for the options that increase friendship? --> these go into buttons
-Arrays for the options that decrease friendship? --> these go into buttons
 
 ## SITE LAYOUT / UI
 
-Logo at the top - Marshal Crossing (or whatever the title will be) -- this can go away once you start the game
-Box in the middle of screen
-Picture of Marshal will change based on scenario
-Items at the bottom such as friendship level, current day, friendship tier "new, good, best, BFF"
-Footer under the box - made by sal!#0099 - visit my ko-fi!
-Based on datamined data from XXXXXX
-Link to Animal Crossing New Horizons
+* Logo at the top - Marshal Crossing
+* Box in the middle of screen
+* Picture of Marshal will change based on scenario
+* Items at the top such as friendship level, current day, friendship tier
+* Footer under the box - made by sal!#0099
+* Based on datamined data
 
 ## Resources
 
@@ -103,17 +91,17 @@ we want to have more scenarios after reaching max level so that it is not always
 
 after 15 scenarios -- marshal will definitely give the photo
 
-extra mile:
-have input for the user to enter their name
-have input for the user to name their island
-var username = name
-var island = islandname
-
 ### Extra Mile
 
 chance of obtaining photo early -- really want to implement this
 last screen with "thank you for playing" and pull the final stats of friendship points/level.
 music for bubblegum kk.
+
+extra mile:
+have input for the user to enter their name
+have input for the user to name their island
+var username = name
+var island = islandname
 
 ### to-do list
 
@@ -142,15 +130,3 @@ add pictures to endings
 2 - he moves -- DONE
 
 add music?
-
-### nextScenario function (before adding chance)
-
-let nextScenario = function(scenario) {
-  changeImage(scenario.image)
-  changeText(scenario.text)
-  changeButtons(scenario.button)
-  statsDay.innerText = "day: " + dayCount
-  statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
-  statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
-  dayCount += 1
-}
