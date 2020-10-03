@@ -39,21 +39,21 @@ See raw pseudocode and unedited notes in the plan.md file.
 ## Goals
 
 1. Add a variety of scenarios so that the game has a responsive feel to the player.
-2. Implement the percent chance to obtain photo early, since it is similar to ACNH where you can get lucky and get your villager's photo early once a certain friendship threshold is met.
+2. Implement the percent chance to obtain Marshal's photo early, since it is similar to ACNH where you can get lucky and get your villager's photo early once a certain friendship threshold is met.
 3. Simplistic UI where the game is at the center of the page. Even within the game box, the main focus of the game is the photo and text/buttons. No unncessary statistics at the top.
 
 ## Challenges
 
 1. The main challenge with my game was not a challenge in terms of how to write it, but the amount of time it took to actually write out every single possible scenario that can occur. It was great that I was able to sort them in separate objects for each type of scenario (main, happy, sad, and ending) as it made it easier to code the functions. This made me so much more appreciative of the text-based games I played growing up and even to this day. It must have taken a lot of time to write it all out as ideas and then write it all out again into code.
 2. The next challenge was with making my code DRY. I felt like a lot of my code is repeating the same functions (i.e., with the changing of scenarios and updating the statistics at the top) but it had to be really specific because of the number of scenarios.
-3. The next challenge I had was trying to implement the percent chance of earning Marshal's photo early. It required a large-ish conditional statement which I am sure could have been organized more efficiently. It didn't seem too long with just 6 friendship levels, but I know it would not be efficient if there were more. This function was not working for a long time and I tried so many workarounds, only to figure out it was because i used "=" and not "===" in the if statement. Rookie mistake that cost me an hour...
+3. The next challenge I had was trying to implement the percent chance of earning Marshal's photo early. It required a large-ish conditional statement which I am sure could have been organized more efficiently. It didn't seem too long with just 6 friendship levels, but I know it would not be efficient if there were more. This function was not working for a long time and I tried so many workarounds, only to figure out it was because I used "=" and not "===" in the if statement. Rookie mistake that cost me an hour...
 4. Another challenge was on CSS and having everything align within the game box. Eventually figured out the best method to me was using flexbox.
 
 ## Extra Mile
 
 Here are a few things I wish I could have implemented, but I felt it would take a lot of time. It would be adding similar functions that I have already used, in order to have more "personable and responsive" features.
 * Having the player input their name and name of their island in the beginning. I didn't think about adding this until towards the end of writing up my functions. It might be something I can add later.
-* I used pretty much the same picture of Marshal for the happy and sad reaction scenarios, not so much because of the time it would take to add them, but because I personally did not have the appropriate screenshots for the scenes. Might be something to implement at a later time.
+* I used the same picture of Marshal for the happy and sad reaction scenarios, not so much because of the time it would take to add them, but because I personally did not have the appropriate screenshots for the scenes. Might be something to implement at a later time.
 * Another small feature, but I wanted to add a little icon of Marshal's face next to friendship level where he smiles if it's a high level or frowns if it's a low level. Does not contribute much to game logic but would be cute!
 * Wanted to learn how to implement a version of light/dark mode, but instead have it sand/water mode which will change the background from the current sand color to a blue color. Again, this is just for styling, so maybe something cool to add later!
 
@@ -61,6 +61,6 @@ Here are a few things I wish I could have implemented, but I felt it would take 
 
 * All the images are screenshots from my Marshal in my ACNH game!
 * Bubblegum K.K. is playing in the background and the embed is hidden. Feel free to mute the browser/tab.
-* Friendship data was referenced by @yuecrossing at yuexr.github.io/acnh/ - datamined credit is on their website.
-* Graphic at the top was made by my friend Hoang.
-* Added my Discord tag at the footer rather than my full/personal name in case I wanted to share this to my friends in the online AC community.
+* Friendship data was referenced by [@yuecrossing](https://twitter.com/yuecrossing) at [yuexr.github.io/acnh/](yuexr.github.io/acnh/). Datamined credit is on their website.
+* Graphic at the top was made by my friend Hoang (he did not want tagged/linked credit).
+* Added my Discord tag at the footer rather than my full/personal name in case I wanted to share this publicly to my friends in the online AC community.
