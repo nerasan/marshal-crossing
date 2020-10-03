@@ -6,7 +6,7 @@ Animal Crossing: New Horizons is one of Nintendo's most popular game franchises,
 
 Marshal Crossing is a simple mini version of ACNH and introduces you to the villager interaction aspect of the game. This game is a text-based browser game where your newest villager, Marshal, is getting accustomed to life on your island. The objective is to make Marshal feel welcome and eventually obtain his framed photo once he gains your trust. This is similar to ACNH where you can perform a multitude of tasks to essentially increase the friendship level with your villagers and obtain their framed photo.
 
-Game Demo: [https://nerasan.github.io/marshal-crossing/](https://nerasan.github.io/marshal-crossing/)
+Game Demo: [https://nerasan.github.io/marshal-crossing/](https://nerasan.github.io/marshal-crossing/){:target="_blank"}
 
 ## Technology
 
@@ -76,6 +76,6 @@ Here are a few things I wish I could have implemented, but I felt it would take 
 
 * All the images are screenshots from my Marshal in my ACNH game!
 * Bubblegum K.K. will play in the background once the Start button is pressed. The audio can be muted by clicking "mute".
-* Friendship data was referenced by [@yuecrossing](https://twitter.com/yuecrossing) at [yuexr.github.io/acnh/](yuexr.github.io/acnh/). Datamined credit is on their website.
+* Friendship data was referenced by [@yuecrossing](https://twitter.com/yuecrossing){:target="_blank"} at [yuexr.github.io/acnh/](yuexr.github.io/acnh/){:target="_blank"}. Datamined credit is on their website.
 * Header graphic and title icon made/edited by my friend Hoang (he did not want tagged/linked credit).
 * Added my Discord tag at the footer rather than my full/personal name in case I wanted to share this publicly to my friends in the online AC community.
