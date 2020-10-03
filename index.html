@@ -13,39 +13,38 @@
             <img src="pics/marshal-island.png">
             <h1>marshal crossing</h1>
         </header>
-
+        <!-- the box where the game happens -->
         <div class="gamescreen">
-
+            <!-- top line with game stats: day count, friendship points, friendship level, restart option -->
             <div id="stats">
                 <div id="day"> </div>
-                <div id="friendship-points"> </div>
-                <div id="friendship-level"> </div>
+                <div id="friendship-points"></div>
+                <div id="friendship-level"></div>
                 <div id="restart"> </div>
-
             </div>
-
-            <div id="scenario-photo">
-
-            </div>
-
+            <!-- the photo that changes with each scenario -->
+            <div id="scenario-photo"></div>
+            <!-- the text that changes with each scenario -->
             <div id="scenario-text">
                 Marshal is the newest resident villager to move to your island! It is said that when a villager considers you their bff, they will express it by giving you their framed photo! How long will it take for you and Marshal to become bff's?
             </div>
-
+            <!-- the buttons that change with each scenario -->
             <div id="button-space">
+                <!-- initial button will start the game -->
                 <button onClick = "startGame()">Start!</button>
             </div>
-
         </div>
-
     </div>
-    
+
+    <!-- footer under the game box that has a link to the creator, credits to the acnh website with datamined information on friendship levels, and credits to my friend for creating the graphic at the top! -->
     <footer>
         <p>created by <a href="https://discord.com/users/267855492242604032">sal!#0099</a></p>
         <p>friendship data referenced by <a href="https://twitter.com/yuecrossing">@yuecrossing</a> at <a href="https://yuexr.github.io/acnh/">yuexr.github.io/acnh/</a></p>
         <p>header by the greatest graphic designer, my bff hoang</p>
     </footer>
 
+    <!-- YESSS I FOUND OUT HOW TO ADD BUBBLEGUM KK -->
+    <embed src="/audio/bubblegum-kk-aircheck.mp3" loop="true" autostart="true" width="0" height="0">
     <script src="app.js"></script>
 </body>
 </html>

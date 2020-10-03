@@ -1,21 +1,27 @@
+// declaring the variables for game logic and will display at the stats bar on top
 let friendshipPoints = 0
 let friendshipLevel = 0
 let dayCount = 0
 
+// grabbing the div elements for manipulation to change the photo, text, and buttons per scenario
 let images = document.getElementById("scenario-photo")
 let text = document.getElementById("scenario-text")
 let buttonBox = document.getElementById("button-space")
 
+// grabbing the div elements for manipulation of the stats bar & restart button
 let statsDay = document.getElementById("day")
 let statsFriendshipPoints = document.getElementById("friendship-points")
 let statsFriendshipLvl = document.getElementById("friendship-level")
 let restart = document.getElementById("restart")
 
-// TO LOOP OVER AN OBJECT
+// FOUR OBJECTS TO BE USED FOR EVERY POSSIBLE SCENARIO (main, happy, sad, and ending)
+// object of objects -- the child object has the image, text, and button options for every scenario object
+// key for button is an array with the button's displayed text and the button's function once clicked
 
-// object for all scenarios
+// OBJECT ONE -- main scenarios, where the player can select an option to proceed
+
 let scenario = {
-  // introductory scenario to say hi (zero)
+  // scenario zero -- introductory scenario to say hi
   zero: {
     image: "/pics/scenario-zero.png", // png
     text: "Isabelle is making a morning announcement! She says your island is welcoming its newest neighbor, Marshal! Please make every effort so that he feels right at home.",
@@ -105,7 +111,7 @@ let scenario = {
     text: "You check your mailbox and find a letter from Marshal, explaining how he is glad he made the choice to move to the island since he got to meet people like you. He hopes you both can keep in touch in person and as penpals.",
     button: [["Write back and tell him how much he means to you", "happyResponse(happy.fourteen)"],["Keep the letter but you forgot to write back...", "sadResponse(sad.fourteen)"]]
   },
-  // scenario fifteen
+  // scenario fifteen -- last scenario. the final option determines whether you earn a photo or not. if you pick the second option, you will lose because marshal will choose to move out by that response, regardless of how many friendship points you have.
   fifteen: {
     image: "/pics/scenario-fifteen.jpg",
     text: "It has been two weeks since Marshal moved to your island. You find him taking a walk at night, deep in thought. Seems like a good time to tell him what's on your mind...",
@@ -113,9 +119,8 @@ let scenario = {
   },
 }
 
-// remember to call the function to go to scenario zero
-
-// object for all happy responses
+// OBJECT TWO -- happy scenarios, the scenario the user goes to if they pick the response that increases friendship points.
+// buttons will ONLY go to the next main scenario
 
 let happy = {
   // happy response 1 -- button goes to scenario 2
@@ -204,7 +209,8 @@ let happy = {
   },
 }
 
-// object for all sad responses
+// OBJECT THREE -- sad scenarios, the scenario the user goes to if they pick the response that decreases friendship points.
+// buttons will ONLY go to the next main scenario
 
 let sad = {
   // sad response 1 -- button goes to scenario 2
@@ -293,7 +299,11 @@ let sad = {
   },
 }
 
-// object for end scenarios
+// OBJECT FOUR -- ending scenarios
+// three endings -- obtaining photo early (win), obtaining photo at the end (win), marshal moves away (lose)
+// two credit screens -- one where marshal says he loves you, one calling you out for being heartless :)
+// buttons for ending scenarios will go to a credit screen -- the two win endings go to happy ending, the lose ending goes to sad ending
+// credit screens show the number of days it took for marshal to give you his photo. the less, the stronger he trusted you!
 
 let ending = {
   photoEarly: {
@@ -321,40 +331,25 @@ let ending = {
   }
 }
 
-// Maybe add a "Thank you for playing" screen after every ending.
+// GAME LOGIC & FUNCTIONS
 
-// percent chance of something happening
+// function to pull a random number, which determines the chance of obtaining his photo early
 let photoChance = 0
 let randomChance = function() {
   photoChance = Math.floor(Math.random() * 100)
 }
 
-// if (d < 0.5) {
-//   // 50% chance of something happening here
-// } else if (d < 0.7) {
-//   // 20% chance of something happening here
-// } else {
-//   // 30% chance of something happening here
-// }
-
-// chance by friendship points or level
-
-// if (friendship >= 200) {
-//   if (d < 0.9) {
-//     photoWin()
-//   }
-// }
-
-// FUNCTIONS
-
+// function to change the text for every scenario
 let changeText = function(words) {
   text.innerHTML = words
 }
 
+// function to change the image for every scenario
 let changeImage = function(img) {
   images.style.backgroundImage = "url(" + img + ")"
 }
 
+// function to change the button options for every scenario
 // this does not necessarily have to have the same number of buttons. it is put in an array within the object.
 let changeButtons = function(buttonList) {
   buttonBox.innerHTML = "" 
@@ -363,6 +358,8 @@ let changeButtons = function(buttonList) {
   }
 }
 
+// function that starts the game
+// adds the stats to the top bar, adds event listener to restart text, then goes to scenario zero (intro)
 let startGame = function() {
   statsDay.innerText = "day: " + dayCount
   statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
@@ -372,35 +369,30 @@ let startGame = function() {
   nextScenario(scenario.zero)
 }
 
+// function to restart the game -- reloading page (not sure this is the best way to restart game?)
 let restartGame = function() {
   location.reload()
 }
 
-let dayPass = function() {
-  dayCount += 1
-}
+// notes: to do a PERCENT CHANCE of winning early, that needs to go in nextScenario because then the chance of this happening will happen after hitting the continue button (in happy/sad scenarios)
 
-// GAME LOGIC 
-
-// to do a PERCENT CHANCE of winning early, that needs to go in nextScenario because then the chance of this happening will happen after hitting the continue button
-
+// function that goes to the next MAIN scenario -- pulls from first object of MAIN scenarios
 let nextScenario = function(scenario) {
-  console.log(dayCount)
-  // if day 15 then cannot go to photoearly
+  // if it is day 15, then player cannot win "early" since everyone wins the photo (if they pick the good response)
   if (dayCount >= 15) {
     scenarioUpdate(scenario)
-  } else {
-      // if friendship level is at 6 (max) then there is a 90% chance of winning early
+  } else { // if it is NOT day 15, then go through conditional statements to determine the chance of winning photo early.
+      // if friendship level is at 6 (max) then there is a 20% chance of winning photo early
       if (friendshipLevel === 6) {
         console.log(friendshipLevel)
         randomChance()
         if (photoChance < 20) { // 20% chance
           endScenario(ending.photoEarly)
         } else {
-          scenarioUpdate(scenario) // the rest of the code already written in nextScenario - but is this necessary?
+          scenarioUpdate(scenario) // if random chance did not win the photo early, then run scenarioUpdate which basically updates the scenario to the next MAIN scenario
         }
       } else if (friendshipLevel === 5) {
-        randomChance()
+        randomChance() // not sure if running the function to get the random chance number should be outside this conditional? seems repetitive to be in every single friendship level conditional 
         if (photoChance < 16) { // 16% chance
           endScenario(ending.photoEarly)
         } else {
@@ -431,123 +423,99 @@ let nextScenario = function(scenario) {
         scenarioUpdate(scenario)
       }
     }
-
   }
 
-let scenarioUpdate = function(scenario) {
-  changeImage(scenario.image)
-  changeText(scenario.text)
-  changeButtons(scenario.button)
-  statsDay.innerText = "day: " + dayCount
-  statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
-  statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
-  dayCount += 1
-  console.log("friendship level: " + friendshipLevel)
-  console.log("chance of earning photo: " + photoChance)
-}
-  
-  // this function is pulling from the scenario object, which within each "scenario" has more objects such as the image, text, button, etc.
-  // so changeImage(s.image) is basically a function that changes the background image style for whatever is in the scenario's object
+  // the function that runs in the above conditional statement if the random chance does NOT mean the user wins the photo early. then it goes to the next MAIN scenario and changes that scenario's image, text, and button. it also increases the day count each time the scenario updates to indicate going to the next day.
+  // this function is pulling from the scenario object, and within each "scenario" there are more objects such as the image, text, button, etc.
+  let scenarioUpdate = function(scenario) {
+    changeImage(scenario.image)
+    changeText(scenario.text)
+    changeButtons(scenario.button)
+    statsDay.innerText = "day: " + dayCount
+    statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
+    statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
+    dayCount += 1
+  }
 
-  // need two more functions for going to the happy or sad response based on which button is clicked in the scenario
+  // function that goes to the happy scenario, if the user chooses a response that makes marshal happy and increases friendship points by 25. within this function, it determines your friendship level based on the UPDATED friendship points. that way if you get to a higher level after this response, you will have a chance to win early, since the "continue" button checks that conditional.
+  let happyResponse = function(scenario) {
+    friendshipPoints += 25
+    if (friendshipPoints >= 200) {
+      friendshipLevel = 6
+    } else if (friendshipPoints > 150) {
+      friendshipLevel = 5
+    } else if (friendshipPoints > 100) {
+      friendshipLevel = 4
+    } else if (friendshipPoints > 60) {
+      friendshipLevel = 3
+    } else if (friendshipPoints > 30) {
+      friendshipLevel = 2
+    } else if (friendshipPoints > 0) {
+      friendshipLevel = 1
+    }
+    changeImage(scenario.image)
+    changeText(scenario.text)
+    changeButtons(scenario.button)
+    statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
+    statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
+  };
 
-      // happy response
-      let happyResponse = function(scenario) {
-        friendshipPoints += 25
-        if (friendshipPoints >= 200) {
-          friendshipLevel = 6
-        } else if (friendshipPoints > 150) {
-          friendshipLevel = 5
-        } else if (friendshipPoints > 100) {
-          friendshipLevel = 4
-        } else if (friendshipPoints > 60) {
-          friendshipLevel = 3
-        } else if (friendshipPoints > 30) {
-          friendshipLevel = 2
-        } else if (friendshipPoints > 0) {
-          friendshipLevel = 1
-        }
-        changeImage(scenario.image)
-        changeText(scenario.text)
-        changeButtons(scenario.button)
-        statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
-        statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
-      };
+   // function that goes to the sad scenario, if the user chooses a response that makes marshal sad and decreases friendship points by 10. within this function, it determines your friendship level based on the UPDATED friendship points. that way if you get to higher level after this response, you will have a chance to win early, since the "continue" button checks that conditional.
+  let sadResponse = function(scenario) {
+    friendshipPoints -= 10
+    if (friendshipPoints >= 200) {
+      friendshipLevel = 6
+    } else if (friendshipPoints > 150) {
+      friendshipLevel = 5
+    } else if (friendshipPoints > 100) {
+      friendshipLevel = 4
+    } else if (friendshipPoints > 60) {
+      friendshipLevel = 3
+    } else if (friendshipPoints > 30) {
+      friendshipLevel = 2
+    } else if (friendshipPoints > 0) {
+      friendshipLevel = 1
+    }
+    changeImage(scenario.image)
+    changeText(scenario.text)
+    changeButtons(scenario.button)
+    statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
+    statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
+  };
 
-      // sad response
-      let sadResponse = function(scenario) {
-        friendshipPoints -= 10
-        if (friendshipPoints >= 200) {
-          friendshipLevel = 6
-        } else if (friendshipPoints > 150) {
-          friendshipLevel = 5
-        } else if (friendshipPoints > 100) {
-          friendshipLevel = 4
-        } else if (friendshipPoints > 60) {
-          friendshipLevel = 3
-        } else if (friendshipPoints > 30) {
-          friendshipLevel = 2
-        } else if (friendshipPoints > 0) {
-          friendshipLevel = 1
-        }
-        changeImage(scenario.image)
-        changeText(scenario.text)
-        changeButtons(scenario.button)
-        statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
-        statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
-      };
+  // function that changes the scenario to one of the three endings -- triggered by buttons in last MAIN scenario or by chance if you win photo early
+  let endScenario = function(ending) {
+    changeImage(ending.image)
+    changeText(ending.text)
+    changeButtons(ending.button)
+  }
 
-      // win by obtaining photo by chance
-      let earlyPhoto = function(ending) {
-        changeImage(ending.photoEarly.image)
-        changeText(ending.photoEarly.text)
-        changeButtons(ending.button)
-      }
+  // function that changes to one of the two credit screens -- triggered by buttons in ending scenarios
+  // removes the buttons and instead has text which will either indicate how many days it took for you to earn marshal's photo, or telling you that you cannot be forgiven for making him sad. both options thanks the user for playing.
+    
+  let creditsScreenEarly = function() {
+    changeImage(ending.creditsHappy.image)
+    changeText(ending.creditsHappy.text)
+    let endbutton = document.querySelector("button")
+    endbutton.remove()
+    let lastDay = dayCount - 1
+    buttonBox.innerText = "You earned Marshal's photo after " + lastDay + " days! It must have been your winning personality that made Marshal trust you so quickly. Thank you for playing Marshal Crossing!"
+  }
 
-      let endScenario = function(ending) {
-        changeImage(ending.image)
-        changeText(ending.text)
-        changeButtons(ending.button)
-      }
+  let creditsScreen = function() {
+    changeImage(ending.creditsHappy.image)
+    changeText(ending.creditsHappy.text)
+    let endbutton = document.querySelector("button")
+    endbutton.remove()
+    let lastDay = dayCount - 1
+    buttonBox.innerText = "You earned Marshal's photo after " + lastDay + " days! Marshal is so grateful for a genuine friendship like yours. Thank you for playing Marshal Crossing!"
+  }
 
-      // credits scene and showing score
-      let creditsScreenEarly = function() {
-        changeImage(ending.creditsHappy.image)
-        changeText(ending.creditsHappy.text)
-        let endbutton = document.querySelector("button")
-        endbutton.remove()
-        let lastDay = dayCount - 1
-        buttonBox.innerText = "You earned Marshal's photo after " + lastDay + " days! It must have been your winning personality that made Marshal trust you so quickly. Thank you for playing Marshal Crossing!"
-      }
-
-      let creditsScreen = function() {
-        changeImage(ending.creditsHappy.image)
-        changeText(ending.creditsHappy.text)
-        let endbutton = document.querySelector("button")
-        endbutton.remove()
-        let lastDay = dayCount - 1
-        buttonBox.innerText = "You earned Marshal's photo after " + lastDay + " days! Marshal is so grateful for a genuine friendship like yours. Thank you for playing Marshal Crossing!"
-      }
-
-      let creditsScreenLose = function() {
-        changeImage(ending.creditsSad.image)
-        changeText(ending.creditsSad.text)
-        let endbutton = document.querySelector("button")
-        endbutton.remove()
-        let lastDay = dayCount - 1
-        buttonBox.innerText = "Even though making Marshal sad can never be forgiven, we thank you for playing Marshal Crossing!"
-      }
-
-      // let winPhoto = function(ending) {
-      //   changeImage(ending.photoWin.image)
-      //   changeText(ending.photoWin.text)
-      // }
-
-      // let byeMarshal = function(ending) {
-      //   changeImage(ending.bye.image)
-      //   changeText(ending.bye.text)
-      // }
-
-      // += is adding
-      // MVP is building the win condition
-      // minimum viable product
+  let creditsScreenLose = function() {
+    changeImage(ending.creditsSad.image)
+    changeText(ending.creditsSad.text)
+    let endbutton = document.querySelector("button")
+    endbutton.remove()
+    let lastDay = dayCount - 1
+    buttonBox.innerText = "Even though making Marshal sad can never be forgiven, we thank you for playing Marshal Crossing!"
+  }
