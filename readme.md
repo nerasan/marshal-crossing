@@ -6,9 +6,22 @@ Animal Crossing: New Horizons is one of Nintendo's most popular game franchises,
 
 Marshal Crossing is a simple mini version of ACNH and introduces you to the villager interaction aspect of the game. This game is a text-based browser game where your newest villager, Marshal, is getting accustomed to life on your island. The objective is to make Marshal feel welcome and eventually obtain his framed photo once he gains your trust. This is similar to ACNH where you can perform a multitude of tasks to essentially increase the friendship level with your villagers and obtain their framed photo.
 
+Game Demo: [https://nerasan.github.io/marshal-crossing/](https://nerasan.github.io/marshal-crossing/)
+
 ## Technology
 
 HTML, CSS, JavaScript
+
+## Wireframe & Design
+
+Only had a rough sketch, so a nicer wireframe will be added soon!
+
+**Color Palette**
+```
+#4f619b
+#e3b090
+#94d6e0
+```
 
 ## Game Logic
 
