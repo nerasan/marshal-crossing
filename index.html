@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./style.css"></link>
 </head>
 <body>
+
     <div class="container">
         <!-- header above game box with graphic and title -->
         <header>
@@ -34,20 +35,27 @@
                 <!-- initial button will start the game -->
                 <button onClick = "startGame()">Start!</button>
             </div>
+            <p id="mute">mute</p>
         </div>
     </div>
 
     <!-- footer under the game box that has a link to the creator, credits to the acnh website with datamined information on friendship levels, and credits to my friend for creating the graphic at the top! -->
     <footer>
-        <p>created by <a href="https://discord.com/users/267855492242604032">sal!#0099</a></p>
-        <p>friendship data referenced by <a href="https://twitter.com/yuecrossing">@yuecrossing</a> at <a href="https://yuexr.github.io/acnh/">yuexr.github.io/acnh/</a></p>
+        <p>created by <a href="https://discord.com/users/267855492242604032" target="_blank">sal!#0099</a> | <a href="https://ko-fi.com/kksal" target="_blank"><img src="./pics/kofi.png" alt="support me on ko-fi!" width="10" height="10" id="socials"></a> support me on ko-fi!</p>
+        <p>friendship data referenced by <a href="https://twitter.com/yuecrossing" target="_blank">@yuecrossing</a> at <a href="https://yuexr.github.io/acnh/" target="_blank">yuexr.github.io/acnh/</a></p>
         <p>header & title icon by the greatest graphic designer, my bff hoang</p>
     </footer>
 
+    <!-- JUST KIDDING I PUT IT ALL IN JAVASCRIPT NOW -->
     <!-- YESSS I FOUND OUT HOW TO ADD BUBBLEGUM KK -->
     <!-- just kidding it works but sometimes does not play??? -->
     <!-- ok googled around and apparently it's a browser thing, some don't allow autoplay unless user interacts with the page. maybe chrome is this way. -->
-    <embed src="./audio/bubblegum-kk-aircheck.mp3" loop="true" autostart="true" width="2" height="0">
+    <!-- <embed src="./audio/bubblegum-kk-aircheck.mp3" loop="true" autostart="true" width="2" height="0"> -->
+
+        <!-- <iframe src="./audio/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+        <audio id="player" autoplay loop>
+            <source src="./audio/bubblegum-kk-aircheck.mp3" type="audio/mp3">
+        </audio> -->
     <script src="./app.js"></script>
 </body>
 </html>

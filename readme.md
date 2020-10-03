@@ -18,9 +18,11 @@ Only had a rough sketch, so a nicer wireframe will be added soon!
 
 **Color Palette**
 ```
-#4f619b
+#e9e4db
+#4b60a0
 #e3b090
-#94d6e0
+#7fd8e2
+#8fdfb2
 ```
 
 ## Game Logic

@@ -14,6 +14,19 @@ let statsFriendshipPoints = document.getElementById("friendship-points")
 let statsFriendshipLvl = document.getElementById("friendship-level")
 let restart = document.getElementById("restart")
 
+// code to play audio when player hits start button
+var audio = new Audio("./audio/bubblegum-kk-aircheck.mp3")
+audio.loop = true
+audio.volume = 0.1
+let muteAudio = function() {
+  if (audio.volume > 0) {
+    audio.volume = 0.0
+  } else {
+    audio.volume = 0.1
+  }
+}
+document.getElementById("mute").addEventListener("click", muteAudio)
+
 // FOUR OBJECTS TO BE USED FOR EVERY POSSIBLE SCENARIO (main, happy, sad, and ending)
 // object of objects -- the child object has the image, text, and button options for every scenario object
 // key for button is an array with the button's displayed text and the button's function once clicked
@@ -21,6 +34,11 @@ let restart = document.getElementById("restart")
 // OBJECT ONE -- main scenarios, where the player can select an option to proceed
 
 let scenario = {
+  start: {
+    image: "./pics/intro.jpg",
+    text: "Marshal is the newest resident villager to move to your island! It is said that when a villager considers you their bff, they will express it by giving you their framed photo! How long will it take for you and Marshal to become bff's?",
+    button: [["Start!", "startGame()"]]
+  },
   // scenario zero -- introductory scenario to say hi
   zero: {
     image: "./pics/scenario-zero.png", // png
@@ -217,7 +235,7 @@ let sad = {
   one: {
     image: "./pics/sad.jpg",
     text: "Marshal is taken aback by your response, but he smiles and tells you he intends to figure out what he likes to do here. He just wanted to get some ideas since it's his first day, sulky!",
-    button: [["Continue", "nextScenario(scenario.two)"]]
+    button: [["Continue", "startGame()"]]
   },
   // sad response 2 -- button goes to scenario 3
   two: {
@@ -361,6 +379,7 @@ let changeButtons = function(buttonList) {
 // function that starts the game
 // adds the stats to the top bar, adds event listener to restart text, then goes to scenario zero (intro)
 let startGame = function() {
+  audio.play()
   statsDay.innerText = "day: " + dayCount
   statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
   statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
@@ -369,9 +388,19 @@ let startGame = function() {
   nextScenario(scenario.zero)
 }
 
-// function to restart the game -- reloading page (not sure this is the best way to restart game?)
+// function to restart the game -- sets variables back to 0, removes stats bar, and changes scenario to a "start" scenario, added to the object
 let restartGame = function() {
-  location.reload()
+  dayCount = 0
+  friendshipPoints = 0
+  friendshipLevel = 0
+  statsDay.innerText = ""
+  statsFriendshipPoints.innerText = ""
+  statsFriendshipLvl.innerText = ""
+  restart.innerHTML = ""
+  changeImage(scenario.start.image)
+  changeText(scenario.start.text)
+  changeButtons(scenario.start.button)
+  // location.reload() // WOOO not using reload() !!!
 }
 
 // notes: to do a PERCENT CHANCE of winning early, that needs to go in nextScenario because then the chance of this happening will happen after hitting the continue button (in happy/sad scenarios)

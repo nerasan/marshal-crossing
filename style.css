@@ -15,14 +15,19 @@ img {
     margin: 0 auto;
 }
 
+#socials {
+    height: 12px;
+    width: 12px;
+}
+
 h1 {
     font-size: 30px;
-    color: #4f619b; /* match color with graphic */
+    color: #4b60a0; /* match color with graphic */
 }
 
 .gamescreen {
     border: 0.5px solid black;
-    background-color: #e3b090; /* match color with graphic */
+    background-color: #ecae8b; /* match color with graphic */
     width: 640px; /* apparently 640x480 is a standard browser game dimension */
     height: 480px;
     margin: 0 auto;
@@ -40,8 +45,14 @@ h1 {
     cursor: pointer;
 }
 
+#restart:hover {
+    color: #4b60a0;
+}
+
+
 #day, #friendship-level, #friendship-points, #restart {
     display: inline-block;
+    margin: 0 5px 0 2px;
 }
 
 #scenario-photo {
@@ -64,7 +75,7 @@ h1 {
 #button-space {
     border: 0px solid black;
     width: 90%;
-    height: 14%;
+    height: 12%;
     display: inline-flex;
     justify-content: center;
 }
@@ -75,7 +86,7 @@ button {
     height: 50px;
     padding: 0;
     margin: 2px 10px 0 10px;
-    background-color: #94d6e0; /* match color with graphic */
+    background-color: #7fd8e2; /* match color with graphic */
     border: 0.5px solid black;
     cursor: pointer;
 }
@@ -93,4 +104,15 @@ p {
 
 a {
     color: #000000;
+}
+
+#mute {
+    margin: 9px 1px 0 0;
+    text-align: right;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#mute:hover {
+    color: #4b60a0;
 }
