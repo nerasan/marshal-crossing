@@ -14,7 +14,7 @@ HTML, CSS, JavaScript
 
 ## Wireframe & Design
 
-Only had a rough sketch, so a nicer wireframe will be added soon!
+Only had a rough sketch, so a nice wireframe picture will be added soon!
 
 **Color Palette**
 ```
@@ -75,7 +75,7 @@ Here are a few things I wish I could have implemented, but I felt it would take 
 ### Other Notes & Credits
 
 * All the images are screenshots from my Marshal in my ACNH game!
-* Bubblegum K.K. is playing in the background and the embed is hidden. Feel free to mute the browser/tab.
+* Bubblegum K.K. will play in the background once the Start button is pressed. The audio can be muted by clicking "mute".
 * Friendship data was referenced by [@yuecrossing](https://twitter.com/yuecrossing) at [yuexr.github.io/acnh/](yuexr.github.io/acnh/). Datamined credit is on their website.
 * Header graphic and title icon made/edited by my friend Hoang (he did not want tagged/linked credit).
 * Added my Discord tag at the footer rather than my full/personal name in case I wanted to share this publicly to my friends in the online AC community.
