@@ -22,7 +22,7 @@ let muteAudio = function() {
   if (audio.volume > 0) {
     audio.volume = 0.0
   } else {
-    audio.volume = 0.1
+    audio.volume = 0.5
   }
 }
 document.getElementById("mute").addEventListener("click", muteAudio)
