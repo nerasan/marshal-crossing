@@ -3,7 +3,7 @@
 body {
     background-color: #e9e4db;
     text-align: center;
-    font-family: 'Grandstander', cursive;;
+    font-family: 'Grandstander', cursive;
 }
 
 header {
@@ -12,12 +12,12 @@ header {
 
 img {
     height: 150px;
-    display: inline-block;
-    margin: 0 20px 0 0;
+    margin: 0 auto;
 }
 
 h1 {
-    display: inline-block;
+    font-size: 30px;
+    color: #4f619b;
 }
 
 .gamescreen {
@@ -34,6 +34,10 @@ h1 {
     justify-content: space-between;
     width: 100%;
     padding: 3px 0 0 2px;
+}
+
+#restart {
+    cursor: pointer;
 }
 
 /* need to fix this with relative positioning */
@@ -74,6 +78,7 @@ button {
     margin: 2px 10px 0 10px;
     background-color: #94d6e0;
     border: 0.5px solid black;
+    cursor: pointer;
 }
 
 footer {

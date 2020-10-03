@@ -10,11 +10,11 @@ The chances of earning the photo is much higher when your friendship level is at
 
 Levels of friendship based on points & the chance of Marshal giving you his photo.
 1. 0-29 points -- 0% -- 0-25
-2. 30-59 points -- 10% -- 25-50
-3. 60-99 points -- 30% -- 50-75-100
-4. 100-149 points -- 50% -- 100-125-150
-5. 150-199 points -- 70% -- 150-175-200
-6. 200+ points -- 90% -- 200-225-250-275-300-325-350-375 (MAX)
+2. 30-59 points -- 5% -- 25-50
+3. 60-99 points -- 10% -- 50-75-100
+4. 100-149 points -- 15% -- 100-125-150
+5. 150-199 points -- 20% -- 150-175-200
+6. 200+ points -- 25% -- 200-225-250-275-300-325-350-375 (MAX)
 
 At level 6, you have a very high chance to earn their picture, but there is always the slight chance you earn his trust early!
 
@@ -114,3 +114,43 @@ var island = islandname
 chance of obtaining photo early -- really want to implement this
 last screen with "thank you for playing" and pull the final stats of friendship points/level.
 music for bubblegum kk.
+
+### to-do list
+
+add pictures to scenarios
+1 - DONE
+2 - DONE
+3 - isabelle and oranges -- DONE
+4 - goldfish season -- DONE
+5 - house plant -- DONE
+6 - k.k. slider is here -- DONE
+7 - week and give present -- DONE
+8 - what type of music -- DONE
+9 - marshal's birthday -- DONE
+10 - too much cake
+11 - flashy fedora -- change to sunflower crown -- DONE
+12 - suggestions for making house nicer -- DONE
+13 - thinking about life elsewhere -- DONE
+14 - letter -- DONE
+15 - marshal at the pier (change to taking a walk for screenshot) -- DONE
+
+add pictures to happy -- one pic
+add pictures to sad -- one pic
+
+add pictures to endings
+1 - photo! -- DONE
+2 - he moves -- DONE
+
+add music?
+
+### nextScenario function (before adding chance)
+
+let nextScenario = function(scenario) {
+  changeImage(scenario.image)
+  changeText(scenario.text)
+  changeButtons(scenario.button)
+  statsDay.innerText = "day: " + dayCount
+  statsFriendshipPoints.innerText = "friendship points: " + friendshipPoints
+  statsFriendshipLvl.innerText = "friendship level: " + friendshipLevel
+  dayCount += 1
+}
